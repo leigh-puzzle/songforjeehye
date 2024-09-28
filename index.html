@@ -4,37 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player</title>
+    <title>Music Player with Image</title>
     <style>
         body {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            margin: 0;
             font-family: Arial, sans-serif;
-            margin: 20px;
+        }
+        .content {
+            display: flex;
+            align-items: flex-start;
         }
         .player-container {
             max-width: 300px; /* Adjust the width as necessary */
-            text-align: center;
+            margin-right: 20px; /* Space between the player and the image */
         }
         .description {
             font-size: 14px; /* Adjust this to change the text size */
             margin-top: 10px;
         }
+        .image-container img {
+            max-width: 200px; /* Adjust the size of the image */
+            height: auto;
+        }
     </style>
 </head>
 <body>
-    <div class="player-container">
-        <audio controls>
-            <source src="song.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-        <div class="description">
-            <!-- Replace this text with your desired content -->
-            Hi Jeehye!<br> 
-            Fall is here in Berlin and we miss you. I wrote this little song for you. I recorded it in Görlitzer Park to mix in some local sounds. <br>
-            Thinkin of you. <br>
-            Love, <br>
+    <div class="content">
+        <div class="player-container">
+            <audio controls>
+                <source src="song.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="description">
+                <!-- Replace this text with your desired content -->
+               Hi Jeehye!<br>
+            Fall is here in Berlin and we miss you. I wrote this little song for you. I recorded it in Görlitzer Park to mix in some local sounds.<br>
+            Thinkin of you.<br>
+            Love,<br>
             Demi
+            </div>
+        </div>
+        <div class="image-container">
+            <!-- Replace 'photo.jpg' with the path to your image file -->
+            <img src="2rainbow.jpg" alt="Description of the photo">
         </div>
     </div>
+</body>
+</html>
