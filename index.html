@@ -5,12 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .player-container {
+            max-width: 300px; /* Adjust the width as necessary */
+            text-align: center;
+        }
+        .description {
+            font-size: 14px; /* Adjust this to change the text size */
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Play Your Song</h1>
-    <audio controls>
-        <source src="song.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-</body>
-</html>
+    <div class="player-container">
+        <audio controls>
+            <source src="song.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="description">
+            <!-- Replace this text with your desired content -->
+            Hi Jeehye!<br> 
+            Fall is here in Berlin and we miss you. I wrote this little song for you. I recorded it in Görlitzer Park to mix in some local sounds. <br>
+            Thinkin of you. <br>
+            Love, <br>
+            Demi
+        </div>
+    </div>
