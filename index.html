@@ -2,49 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song for Jeehye</title>
+
+    <!-- Embedded CSS -->
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
+        /* Body Styling */
+        body, html {
+          height: 100%;
+          margin: 0;
+          background-color: black;
+          background-size: cover;
+          overflow: hidden; /* Ensures fireflies remain visible */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: white; /* Ensures text is visible */
         }
+
         .player-container {
-            max-width: 90%; /* Responsive width */
-            text-align: center;
+          z-index: 1; /* Ensures the player is above the fireflies */
         }
+
         .description {
-            font-size: 14px;
-            margin-top: 10px;
+          font-size: 14px;
+          margin-top: 10px;
+          color: white; /* Sets the text color to white */
         }
-        .image-container {
-            margin-top: 20px;
+
+        /* Firefly Animation */
+        .firefly {
+          position: fixed;
+          width: 0.4vw;
+          height: 0.4vw;
+          background: black;
+          left: 50%;
+          top: 50%;
+          border-radius: 50%;
+          margin: -0.2vw 0 0 9.8vw;
+          animation: ease 200s alternate infinite;
+          pointer-events: none;
         }
-        .image-container img {
-            max-width: 100%; /* Ensures the image is responsive */
-            height: auto;
-            border-radius: 8px; /* Optional: Adds a slight rounding to the image corners */
+
+        .firefly::before, .firefly::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          transform-origin: -10vw;
+        }
+
+        .firefly::before {
+          background: black;
+          opacity: 0.4;
+          animation: drift ease alternate infinite;
+        }
+
+        .firefly::after {
+          background: white;
+          opacity: 0;
+          box-shadow: 0 0 0vw 0vw yellow;
+          animation: drift ease alternate infinite, flash ease infinite;
+        }
+
+        @keyframes drift {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes flash {
+          0%, 30%, 100% {
+            opacity: 0;
+            box-shadow: 0 0 0vw 0vw yellow;
+          }
+          5% {
+            opacity: 1;
+            box-shadow: 0 0 2vw 0.4vw yellow;
+          }
         }
     </style>
-    <script>
-        // Array of hex color values from the images
-        const colors = ['#00AEEF', '#E6A57E', '#99CFE3', '#C8B1DA', '#E7847F', '#8DCB89'];
-
-        // Function to select a random color and apply it as the background
-        function setRandomBackgroundColor() {
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            document.body.style.backgroundColor = randomColor;
-        }
-
-        // Call the function when the page loads
-        window.onload = setRandomBackgroundColor;
-    </script>
 </head>
 <body>
     <div class="player-container">
@@ -62,8 +103,43 @@
         </div>
         <div class="image-container">
             <!-- Replace 'photo.jpg' with the path to your image file -->
-            <img src="2rainbow.JPG" alt="Description of the photo">
+            <img src="2rainbow.JPG" 
         </div>
     </div>
+
+    <!-- Fireflies added below -->
+    <div class="fireflies"></div>
+
+    <!-- Embedded JavaScript -->
+    <script>
+        // Quantity of fireflies
+        const quantity = 15;
+
+        // Create fireflies dynamically
+        for (let i = 0; i < quantity; i++) {
+          const firefly = document.createElement('div');
+          firefly.classList.add('firefly');
+          document.body.appendChild(firefly);
+
+          // Generate random animation speed and movement pattern
+          const rotationSpeed = Math.random() * 10 + 8 + 's';
+          firefly.style.animationDuration = rotationSpeed;
+
+          const steps = Math.floor(Math.random() * 12) + 16;
+          firefly.style.animationName = `move${i}`;
+        }
+
+        // Randomized keyframes for firefly movement
+        for (let i = 0; i < quantity; i++) {
+          const keyframes = `
+            @keyframes move${i} {
+              0% { transform: translateX(${Math.random() * 100 - 50}vw) translateY(${Math.random() * 100 - 50}vh) scale(${Math.random() * 0.75 + 0.25}); }
+              100% { transform: translateX(${Math.random() * 100 - 50}vw) translateY(${Math.random() * 100 - 50}vh) scale(${Math.random() * 0.75 + 0.25}); }
+            }
+          `;
+          const styleSheet = document.styleSheets[0];
+          styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+        }
+    </script>
 </body>
 </html>
