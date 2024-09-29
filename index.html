@@ -21,7 +21,9 @@
         }
 
         .player-container {
-          z-index: 1; /* Ensures the player is above the fireflies */
+          position: relative; /* Ensure it's above the fireflies */
+          z-index: 2; /* Ensures the player is above the fireflies */
+          text-align: center;
         }
 
         .description {
@@ -30,7 +32,6 @@
           color: white; /* Sets the text color to white */
         }
 
-        /* Firefly Animation */
         .firefly {
           position: fixed;
           width: 0.4vw;
@@ -42,6 +43,7 @@
           margin: -0.2vw 0 0 9.8vw;
           animation: ease 200s alternate infinite;
           pointer-events: none;
+          z-index: 1; /* Ensure fireflies are behind the player */
         }
 
         .firefly::before, .firefly::after {
