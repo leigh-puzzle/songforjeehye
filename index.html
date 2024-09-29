@@ -2,146 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Song for Jeehye</title>
-
-    <!-- Embedded CSS -->
     <style>
-        /* Body Styling */
-        body, html {
-          height: 100%;
-          margin: 0;
-          background-color: black;
-          background-size: cover;
-          overflow: hidden; /* Ensures fireflies remain visible */
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          color: white; /* Ensures text is visible */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background-image: url('2rainbow.JPG'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white; /* Ensures the text is visible over the background */
         }
-
         .player-container {
-          position: relative; /* Ensure it's above the fireflies */
-          z-index: 2; /* Ensures the player is above the fireflies */
-          text-align: center;
+            max-width: 90%; /* Responsive width */
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6); /* Optional: Add a semi-transparent background for readability */
+            padding: 20px;
+            border-radius: 8px;
         }
-
         .description {
-          font-size: 14px;
-          margin-top: 10px;
-          color: white; /* Sets the text color to white */
+            font-size: 14px;
+            margin-top: 10px;
         }
-
-        .firefly {
-          position: fixed;
-          width: 0.4vw;
-          height: 0.4vw;
-          background: black;
-          left: 50%;
-          top: 50%;
-          border-radius: 50%;
-          margin: -0.2vw 0 0 9.8vw;
-          animation: ease 200s alternate infinite;
-          pointer-events: none;
-          z-index: 1; /* Ensure fireflies are behind the player */
+        audio {
+            width: 100%;
         }
-
-        .firefly::before, .firefly::after {
-          content: '';
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          transform-origin: -10vw;
-        }
-
-        .firefly::before {
-          background: black;
-          opacity: 0.4;
-          animation: drift ease alternate infinite;
-        }
-
-        .firefly::after {
-          background: white;
-          opacity: 0;
-          box-shadow: 0 0 0vw 0vw yellow;
-          animation: drift ease alternate infinite, flash ease infinite;
-        }
-
-        @keyframes drift {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes flash {
-          0%, 30%, 100% {
-            opacity: 0;
-            box-shadow: 0 0 0vw 0vw yellow;
-          }
-          5% {
-            opacity: 1;
-            box-shadow: 0 0 2vw 0.4vw yellow;
-          }
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .player-container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="player-container">
-        <audio controls style="width: 100%;">
+        <audio controls>
             <source src="song.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <div class="description">
-            <!-- Replace this text with your desired content -->
             Hi Jeehye!<br>
             Fall is here in Berlin and we miss you. I wrote this little song for you. I recorded it in Görlitzer Park to mix in some local sounds. And here is a photo I took of two rainbows over Schlachtensee a couple of weeks ago.<br>
             Thinkin of you.<br>
             Love,<br>
-            Demi
-        </div>
-        <div class="image-container">
-            <!-- Replace 'photo.jpg' with the path to your image file -->
-            <img src="2rainbow.JPG" 
+            Demi <br>
         </div>
     </div>
-
-    <!-- Fireflies added below -->
-    <div class="fireflies"></div>
-
-    <!-- Embedded JavaScript -->
-    <script>
-        // Quantity of fireflies
-        const quantity = 15;
-
-        // Create fireflies dynamically
-        for (let i = 0; i < quantity; i++) {
-          const firefly = document.createElement('div');
-          firefly.classList.add('firefly');
-          document.body.appendChild(firefly);
-
-          // Generate random animation speed and movement pattern
-          const rotationSpeed = Math.random() * 10 + 8 + 's';
-          firefly.style.animationDuration = rotationSpeed;
-
-          const steps = Math.floor(Math.random() * 12) + 16;
-          firefly.style.animationName = `move${i}`;
-        }
-
-        // Randomized keyframes for firefly movement
-        for (let i = 0; i < quantity; i++) {
-          const keyframes = `
-            @keyframes move${i} {
-              0% { transform: translateX(${Math.random() * 100 - 50}vw) translateY(${Math.random() * 100 - 50}vh) scale(${Math.random() * 0.75 + 0.25}); }
-              100% { transform: translateX(${Math.random() * 100 - 50}vw) translateY(${Math.random() * 100 - 50}vh) scale(${Math.random() * 0.75 + 0.25}); }
-            }
-          `;
-          const styleSheet = document.styleSheets[0];
-          styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-        }
-    </script>
 </body>
 </html>
