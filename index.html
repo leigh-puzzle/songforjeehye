@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player with Image</title>
+    <title>Music Player with Random Background</title>
     <style>
         body {
             display: flex;
@@ -13,6 +13,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            min-height: 100vh;
         }
         .player-container {
             max-width: 90%; /* Responsive width */
@@ -31,6 +32,19 @@
             border-radius: 8px; /* Optional: Adds a slight rounding to the image corners */
         }
     </style>
+    <script>
+        // Array of hex color values from the images
+        const colors = ['#00AEEF', '#E6A57E', '#99CFE3', '#C8B1DA', '#E7847F', '#8DCB89'];
+
+        // Function to select a random color and apply it as the background
+        function setRandomBackgroundColor() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        // Call the function when the page loads
+        window.onload = setRandomBackgroundColor;
+    </script>
 </head>
 <body>
     <div class="player-container">
@@ -44,11 +58,11 @@
             Fall is here in Berlin and we miss you. I wrote this little song for you. I recorded it in Görlitzer Park to mix in some local sounds. And here is a photo I took of two rainbows over Schlachtensee a couple of weeks ago.<br>
             Thinkin of you.<br>
             Love,<br>
-            Demi <br>
+            Demi
         </div>
         <div class="image-container">
             <!-- Replace 'photo.jpg' with the path to your image file -->
-            <img src="2rainbow.JPG" 
+            <img src="2rainbow.JPG" alt="Description of the photo">
         </div>
     </div>
 </body>
